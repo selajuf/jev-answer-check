@@ -1,0 +1,11 @@
+{
+  "name": "jev-answer-check",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared Jev answer review for Codex and Claude Code",
+  "license": "MIT",
+  "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test", "mcp": "node src/mcp.mjs", "scan": "node scripts/scan-secrets.mjs"},
+  "dependencies": {"@modelcontextprotocol/sdk": "1.29.0", "zod": "4.6.5"}
+}
