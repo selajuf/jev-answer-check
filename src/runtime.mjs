@@ -12,7 +12,7 @@ export const PREFIX='[jev-answer-check continuation]';
 export const stable=x=>JSON.stringify(x,(_k,v)=>v&&typeof v==='object'&&!Array.isArray(v)?Object.fromEntries(Object.keys(v).sort().map(k=>[k,v[k]])):v);
 export const hash=x=>crypto.createHash('sha256').update(typeof x==='string'?x:stable(x)).digest('hex');
 export const normalize=x=>String(x??'').normalize('NFC').replaceAll('\r\n','\n').trim();
-export const answerHash=x=>hash(normalize(x));
+export const answerHash=x=>hash(normalize(x).replace(/<oai-mem-citation>[\s\S]*?<\/oai-mem-citation>/g,'').trim());
 export const configDir=()=>process.env.JEV_CONFIG_DIR||path.join(os.homedir(),'.config/jev-answer-check');
 export const stateDir=()=>process.env.JEV_STATE_DIR||path.join(os.homedir(),'.local/state/jev-answer-check');
 export const defaults={enabled:false,dailyBudgetUsd:0.05,maxRequestUsd:0.004,maxCallsPerTurn:2,maxDailyCalls:200,maxInputBytes:49152,timeoutMs:15000,passThreshold:0.7,failThreshold:0.3};
